@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Memo Function</title>
+</head>
+<body class="bg-dark text-white">
+    <!-- <header class="header">
+        <nav class="navbar navbar-expand-lg text-white fixed-top">
+          <div class="container">
+            <h1 class="d-flex align-items-center m-0 p-0 header__logo" id="logo">
+              <a class="navbar-brand" href="#top">
+                <img src="logo_short-b.png" class="navbar_logo-v me-2" alt="ブイズアカデミー" width="40" height="30">
+                <img src="logo_long-b.webp" class="navbar_logo-vsacademy mx-1" alt="セカイを創るVISIONARYになろう" width="196" height="35">
+              </a>
+            </h1>
+          </div>
+        </nav>
+      </header> -->
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-3 m-0 p-3 d-flex flex-column flex-shrink-0 bg-body-tertiary text-white">
+                <span class="pointer d-flex align-items-center me-3 me-md-auto link-body-emphasis text-decoration-none justify-content-center w-100" id="button_mode-description">
+                    <span class="fs-4 fw-bold">Why you?</span>
+                </span>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <span id="button_mode-default" class="pointer nav-link menu-mode">
+                            <span class="material-symbols-outlined fill nav-material">home</span>
+                            ホーム
+                        </span>
+                    </li>
+                    <li>
+                        <span id="button_mode-favorite" class="pointer nav-link menu-mode">
+                            <span class="material-symbols-outlined fill nav-material">bookmark</span>
+                            ブックマーク
+                        </span>
+                    </li>
+                    <li>
+                        <span id="button_mode-trash" class="pointer nav-link menu-mode">
+                            <span class="material-symbols-outlined fill nav-material">delete</span>
+                            ゴミ箱
+                        </span>
+                    </li>
+                    <li>
+                        <label for="icon-upload">アイコンを選択:</label>
+                        <input type="file" id="icon-upload" accept="image/*" />
+                    </li>
+                    <li>
+                        <label for="background-upload">背景画像を選択:</label>
+                        <input type="file" id="background-upload" accept="image/*" />
+                    </li>
+                    <li>
+                        <button id="upload-button">アップロード</button>
+                    </li>
+                        <!-- アイコンを表示するための要素 -->
+                    <li>
+                        <div id="icon-container" style="width: 100px; height: 100px; overflow: hidden;">
+                            <img id="icon" style="width: 100%;" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-9 col-main p-0 pe-3 vh-100">
+                <div class="mode-description bg-dark h-100 w-100 m-0 p-0 d-none">
+                    <div class="flex row m-0 p-0 justify-content-center align-items-center h-100">
+                        <div class="col-11 description-1 text-light d-none">
+                            <h2>Welcome to The Mirror World of "Why you?"</h2>
+                            <p>鏡の世界へようこそ。<br>これから自己対話を楽しく行うために、最初に聴いてもらいたいことがあります。</p>
+                            <button type="button" class="btn btn-success m-3" id="button_description1">次へ</button>
+                            <button type="button" class="btn btn-secondary m-3 skip" id="skip1">スキップ</button>
+                        </div>
+                        <div class="col-11 description-2 text-light d-none">
+                            <h2>鏡の世界では<br>あなたはあなたではありません。</h2>
+                            <p>あなたはここでは、鏡の世界のヌシです。そして、あなたは鏡を見ることで、ここにやってくる人の人生の全てを見ることができます。</p>
+                            <p>未来も、現在も、過去も。まるで死後の世界、生まれ変わる前の人間に運命を伝える神様のように。</p>
+                            <button type="button" class="btn btn-success m-3" id="button_description2">次へ</button>
+                            <button type="button" class="btn btn-secondary m-3 skip" id="skip2">スキップ</button>
+                        </div>
+                        <div class="col-11 description-3 text-light d-none">
+                            <h2>あなたの人生は<br>アリスの人生です。</h2>
+                            <p>ここには、アリスという人がやってきます。</p>
+                            <p>アリスは、自分の人生について質問します。<br>質問はQuestionボタンから選ぶことができます。</p>
+                            <button type="button" class="btn btn-success m-3" id="button_description3">次へ</button>
+                            <button type="button" class="btn btn-secondary m-3 skip" id="skip3">スキップ</button>
+                        </div>
+                        <div class="col-11 description-4 text-light d-none">
+                            <h2>あなたの人生は<br>アリスの人生です。</h2>
+                            <p>あなたは、その質問に対してあなた自身の人生を<br>アリスの人生として、チャット欄で答えてあげてください。</p>
+                            <p>答えにくい時は「鏡が割れています」「今は鏡が汚れていてよく見えません」などと答えて、心の安全を守ったり、保留したりしてください。</p>
+                            <p>できる限り、知識よりも、自分の経験や感情に基づいて語ってあげると、アリスは喜びます。</p>
+                            <p>コツ：<a href="https://www.u-tokyo.ac.jp/focus/ja/features/diversityresearch05.html" target="_blank">哲学対話のルール</a></p>
+                            <button type="button" class="btn btn-success m-3" id="button_description4">鏡の世界へ</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mode-video bg-dark h-100 w-100 m-0 p-0 d-none">
+                    <video id="video"></video>
+                    <button type="button" class="btn btn-secondary m-3 skip" id="skip-video">終了</button>
+                </div>
+                <!-- Default Mode -->
+                <div class="mode-default d-none">
+                    <!-- Chat Area -->
+                    <div class="chat-container my-3">
+                        <div class="area-chat"></div>
+                    </div>
+                    <!-- Memo Area -->
+                    <div class="area-memo d-flex align-items-center justify-content-between my-3 row"><div class="col-9">
+                        <textarea type="text" class="form-control" id="memo" placeholder="Enter your memo" style="height: 80px;"></textarea></div>
+                        <div class="col-3"><button type="button" class="btn btn-secondary w-100 mb-1" id="button_modal-question" data-bs-toggle="modal" data-bs-target="#modal-question">Question</button><button type="button" class="btn btn-success w-100" id="button_submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Favorite Mode -->
+                <div class="mode-favorite d-none">
+                    <!-- Chat Area -->
+                    <div class="chat-container my-3">
+                        <div class="area-chat"></div>
+                    </div>
+                    <!-- Memo Area -->
+                    <div class="area-memo d-flex align-items-center justify-content-end mt-3">
+                        <button type="button" class="btn btn-danger" id="button_reset-favorite">Reset Favorites</button>
+                    </div>
+                </div>
+                <!-- Trash Mode -->
+                <div class="mode-trash d-none">
+                    <!-- Chat Area -->
+                    <div class="chat-container my-3">
+                        <div class="area-chat"></div>
+                    </div>
+                    <!-- Memo Area -->
+                    <div class="area-memo d-flex align-items-center justify-content-end mt-3">
+                        <button type="button" class="btn btn-danger" id="button_reset-trash">Empty Trash</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question Modal -->
+    <div class="modal fade" id="modal-question" tabindex="-1" aria-labelledby="modal-questionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-questionLabel">Questions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs nav-fill" id="questionTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="question1-tab" data-bs-toggle="tab" href="#question1" role="tab" aria-controls="question1" aria-selected="true">WhyMe</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="question2-tab" data-bs-toggle="tab" href="#question2" role="tab" aria-controls="question2" aria-selected="false">Who/What</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="question3-tab" data-bs-toggle="tab" href="#question3" role="tab" aria-controls="question3" aria-selected="false"></a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="question4-tab" data-bs-toggle="tab" href="#question4" role="tab" aria-controls="question4" aria-selected="false">話題</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="question5-tab" data-bs-toggle="tab" href="#question5" role="tab" aria-controls="question5" aria-selected="false">その他</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="questionTabsContent">
+                        <div class="tab-pane fade show active" id="question1" role="tabpanel" aria-labelledby="question1-tab">
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        私が、人生で最も「美しい」または「ワクワクした」と感じたものは何ですか
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        私が、親や上記に怒られても「決してやりたくないこと」はなんですか
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        私が、長く没頭・続けられることは何ですか
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        それは、なぜですか
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        わたしは、たった一度の人生をどう生きたいと考えていますか
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        わたしを動かしていた美意識・価値観はなんでしょうか
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様なら、わたしが気になった言葉がわかると思います。具体的にしてください！
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、今の話を言い換えるとどうなりますか？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、わたしの原体験についてもっと知りたいです！
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、わたしの感性と感覚についてもっと知りたいです！
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        Why me? WS
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="question2" role="tabpanel" aria-labelledby="question2-tab">
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様が今見えている、鏡の中のわたしは、どんな目標を持っていますか。
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        01Goal（目標）-01
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様が今見えている、鏡の中のわたしは、どんな状況にいますか。
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        02Reality（現状）-01
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様が今見えている、鏡の中のわたしは、どんな資源を持っていますか。
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        03Resource（資源）-01
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様が今見えている、鏡の中のわたしの人生には、どんな選択肢があるんですか。
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        04Option（資源）-01
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様が今見えている、目標に向かう鏡の中のわたしは、どういう意志や感情を持っていますか。
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        05Will（資源）-01
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="question3" role="tabpanel" aria-labelledby="question3-tab">
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        満足度は何%？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        50ふかぼる-01
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        なぜ？なぜ？なぜ！？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        50ふかぼる-02
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、もし話しずらいことがあっても正直に話して。アリス、ちゃんと受け止めるから！
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        50ふかぼる-03
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、今一番わたしに伝えたい、大事なことってなんだろう？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        50ふかぼる-04
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、それについて取り組んだり考えたりしている時のわたしの感情や身体の状態を教えて！
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        50ふかぼる-05
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、ヌシ様はわたしにどういう人生を歩んでほしい？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        50ふかぼる-06
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="question4" role="tabpanel" aria-labelledby="question4-tab">
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        わたしにとって、GEEKってどんな存在？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        77話題-01
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        わたしにとって、大切な存在はどういう人？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        77話題-02
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        わたしが死ぬ時に思い浮かべそうなことって何？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        77話題-03
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        わたしってどんな人ってよく言われてる？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        77話題-04
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        わたしがもし魔法のお店に行かれたら、何を買いたい？何を引き換えにできる？
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        77話題-05
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="question5" role="tabpanel" aria-labelledby="question5-tab">
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、鏡を30秒間見つめて！アリスをもっと見て！
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        99その他-00
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、30秒間目を瞑って呼吸に集中してみて。集中している時に浮かんだ言葉があればわたしに教えて！
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        99その他-01
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、もう一度最初っから話しましょう！
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        99その他-02
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        ヌシ様、鏡の中がよく見えない時は、鏡が割れてるって教えて！<br>※答えにくい時に心の安全装置として利用してください。
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        99その他-03
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card" id="button_mode-video">
+                                <div class="card-header bg-danger">
+                                    <p class="card-text">
+                                        ヌシ様、鏡をそのまま見てはくれませぬか！（特殊魔法を起動）
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-danger">
+                                    <p class="small text-muted m-0">
+                                        99その他-04
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-3 card-dark pointer question-card" id="button_mode-video">
+                                <div class="card-header bg-dark">
+                                    <p class="card-text">
+                                        （音声認識、保存した文章の形態素分析、ひっくり返す・爆発させるなどの演出、そして質問の自由記述などまだまだ拡充したい機能があります・・・）
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <p class="small text-muted m-0">
+                                        99その他-05&製作者の戯言
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="script-test.js"></script>
+</body>
+</html>
+
